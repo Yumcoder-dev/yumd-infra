@@ -1,2 +1,7 @@
 # yumd-dev
-docker compose for redis, etcd, mysql
+docker compose for creating development environment
+
+## clustering
+ - redis
+ - etcd
+ - mysql
