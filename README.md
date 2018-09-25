@@ -2,9 +2,18 @@
 docker compose to create minimal development clustered infrastructure
 
 ## clustering
- - redis
- - etcd
- - mysql
+ - etcd (subnet 10.20.10.0/24)
+ - redis (subnet 10.20.20.0/24)
+ - mysql (subnet 10.20.30.0/24)
+
+### etcd
+creating 3 etcd instances:
+
+```
+yumd-etcd1: 10.20.10.10
+yumd-etcd2: 10.20.10.11
+yumd-etcd3: 10.20.10.12
+```
 
 ### redis
 create 6 redis instances in order to create a redis cluster
@@ -18,16 +27,8 @@ yumd-redis5: 10.20.20.14
 yumd-redis6: 10.20.20.15
 ```
 
-### etcd
-creating 3 etcd instances:
 
-```
-yumd-etcd1: 10.20.10.10
-yumd-etcd2: 10.20.10.11
-yumd-etcd3: 10.20.10.12
-```
-
-### etcd
+### mysql
 create 2 mysql instances by Galera cluster.
 
 The management node:
