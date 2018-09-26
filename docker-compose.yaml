@@ -248,8 +248,6 @@ services:
       context: ./redis-cluster-creator
       network: host
     container_name: yumd-redis-cluster-creator
-#    volumes:
-#      - ./redis-trib.rb:/home/redis-trib.rb
     network_mode: "host"
     command: |
       sh -c "yes 'yes' | ruby redis-trib.rb create --replicas 1 10.20.20.10:7000 10.20.20.11:7000 10.20.20.12:7000 10.20.20.13:7000 10.20.20.14:7000 10.20.20.15:7000"
@@ -334,12 +332,6 @@ volumes:
   mysql1-storage:
   mysql2-storage:
   grafana1-storage:
-#  grafana1-provisioning-storage:
-#    driver: local
-#    driver_opts:
-#      type: none
-#      o: bind
-#      device: "${PWD}/provisioning"
 ##############################################################
 # networks
 ##############################################################
