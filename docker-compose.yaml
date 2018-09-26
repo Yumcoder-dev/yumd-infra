@@ -1,5 +1,6 @@
 version: "3.3"
 services:
+
   ##############################################################
   # create a cluster with 3 etcd instances                     
   ##############################################################
@@ -7,7 +8,7 @@ services:
     image: quay.io/coreos/etcd
     container_name: yumd-etcd1
     volumes:
-      - etcd1-data:/etcd-data
+      - etcd1-storage:/etcd-data
     expose:
       - 2379
       - 2380      
@@ -40,7 +41,7 @@ services:
     image: quay.io/coreos/etcd
     container_name: yumd-etcd2
     volumes:
-      - etcd2-data:/etcd-data
+      - etcd2-storage:/etcd-data
     networks:
       dev_net:
         ipv4_address: 10.20.10.11
@@ -73,7 +74,7 @@ services:
     image: quay.io/coreos/etcd
     container_name: yumd-etcd3
     volumes:
-      - etcd3-data:/etcd-data
+      - etcd3-storage:/etcd-data
     networks:
       dev_net:
         ipv4_address: 10.20.10.12
@@ -108,8 +109,8 @@ services:
     image: mysql/mysql-cluster
     container_name: yumd-mysql-mgm1
     volumes:
-      - $PWD/my.cnf:/etc/my.cnf    
-      - $PWD/mysql-cluster.cnf:/etc/mysql-cluster.cnf   
+      - ./my.cnf:/etc/my.cnf    
+      - ./mysql-cluster.cnf:/etc/mysql-cluster.cnf   
     networks:
       dev_net:
         ipv4_address: 10.20.30.10 
@@ -120,8 +121,8 @@ services:
     image: mysql/mysql-cluster
     container_name: yumd-mysql-ndb1
     volumes:
-      - $PWD/my.cnf:/etc/my.cnf    
-      - $PWD/mysql-cluster.cnf:/etc/mysql-cluster.cnf 
+      - ./my.cnf:/etc/my.cnf    
+      - ./mysql-cluster.cnf:/etc/mysql-cluster.cnf 
     networks:
       dev_net:
         ipv4_address: 10.20.30.50
@@ -132,8 +133,8 @@ services:
     image: mysql/mysql-cluster
     container_name: yumd-mysql-ndb2
     volumes:
-      - $PWD/my.cnf:/etc/my.cnf    
-      - $PWD/mysql-cluster.cnf:/etc/mysql-cluster.cnf 
+      - ./my.cnf:/etc/my.cnf    
+      - ./mysql-cluster.cnf:/etc/mysql-cluster.cnf 
     networks:
       dev_net:
         ipv4_address: 10.20.30.51
@@ -144,13 +145,19 @@ services:
     image: mysql/mysql-cluster
     container_name: yumd-mysql-srv1
     volumes:
-      - $PWD/my.cnf:/etc/my.cnf    
-      - $PWD/mysql-cluster.cnf:/etc/mysql-cluster.cnf 
+      - ./my.cnf:/etc/my.cnf    
+      - ./mysql-cluster.cnf:/etc/mysql-cluster.cnf
+      - mysql1-storage:/var/lib/mysql
+    expose:
+      - 3306
+    ports:
+      - "13306:3306"
     networks:
       dev_net:
         ipv4_address: 10.20.30.100
     environment:
     - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_ROOT_HOST=%
     command:
       - mysqld
 
@@ -158,13 +165,19 @@ services:
     image: mysql/mysql-cluster
     container_name: yumd-mysql-srv2
     volumes:
-      - $PWD/my.cnf:/etc/my.cnf    
-      - $PWD/mysql-cluster.cnf:/etc/mysql-cluster.cnf 
+      - ./my.cnf:/etc/my.cnf    
+      - ./mysql-cluster.cnf:/etc/mysql-cluster.cnf
+      - mysql2-storage:/var/lib/mysql
+    expose:
+      - 3306
+    ports:
+      - "23306:3306"
     networks:
       dev_net:
         ipv4_address: 10.20.30.101
     environment:
      - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_ROOT_HOST=%
     command:
       - mysqld
   ##############################################################
@@ -230,7 +243,7 @@ services:
       dev_net:
         ipv4_address: 10.20.20.15
 
-
+  # todo(yumcoder): remove dependency to internet in every up event
   yumd-redis-cluster-creator:
     image: alpine
     container_name: yumd-redis-cluster-creator
@@ -247,14 +260,75 @@ services:
       - yumd-redis5
       - yumd-redis6
 
+  ##############################################################
+  # monitoring tools
+  ##############################################################
+  yumd-grafana1:
+    image: grafana/grafana
+    container_name: yumd-grafana1
+    expose:
+    - 3000
+    ports:
+    - "3000:3000"
+    volumes:
+    - grafana1-storage:/var/lib/grafana
+    networks:
+      dev_net:
+        ipv4_address: 10.20.40.10
+
+  yumd-influxdb1:
+    image: influxdb
+    container_name: yumd-influxdb1
+    expose:
+    - 8083
+    - 8086
+    ports:
+    - "8086:8086"
+    - "8083:8083"
+    networks:
+      dev_net:
+        ipv4_address: 10.20.40.11
+
+  yumd-telegraf1:
+    image: telegraf
+    container_name: yumd-telegraf1
+    volumes:
+    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+    - "8092:8092/udp"
+    - "8094:8094"
+    - "8125:8125/udp"
+    networks:
+      dev_net:
+        ipv4_address: 10.20.40.12
+    depends_on:
+    - yumd-influxdb1
+    - yumd-mysql-mgm1
+    - yumd-mysql-ndb1
+    - yumd-mysql-ndb2
+    - yumd-mysql-srv1
+    - yumd-mysql-srv2
+    - yumd-redis1
+    - yumd-redis2
+    - yumd-redis3
+    - yumd-redis4
+    - yumd-redis5
+    - yumd-redis6
+    - yumd-etcd1
+    - yumd-etcd2
+    - yumd-etcd3
+
 ##############################################################
 # volumes
 ##############################################################
 volumes:
-  etcd1-data:
-  etcd2-data:
-  etcd3-data:
-
+  etcd1-storage:
+  etcd2-storage:
+  etcd3-storage:
+  mysql1-storage:
+  mysql2-storage:
+  grafana1-storage:
 ##############################################################
 # networks
 ##############################################################

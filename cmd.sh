@@ -2,6 +2,7 @@
 #####################################################
 if [ $1 = "clear" ]
 then
+    docker stop $(docker ps -aq -f name=yumd)
     docker rm $(docker ps -aq -f name=yumd)
     docker rm $(docker network ls -q -f name=dev_net)
 fi

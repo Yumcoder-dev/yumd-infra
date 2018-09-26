@@ -1,10 +1,30 @@
 # yumd-dev
 docker compose to create minimal development clustered infrastructure
 
-## clustering
- - etcd (subnet 10.20.10.0/24)
- - redis (subnet 10.20.20.0/24)
- - mysql (subnet 10.20.30.0/24)
+clustering components:
+- etcd (subnet 10.20.10.0/24)
+- redis (subnet 10.20.20.0/24)
+- mysql (subnet 10.20.30.0/24)
+
+monitoring components:
+- grafana (10.20.40.10)
+- influxdb (10.20.40.11)
+- telegraf (10.20.40.12)
+
+in order to setup infrastructure, in command line run the below command:
+```
+$ ./cmd.sh up
+```
+
+and for stop, execute the following command:
+```
+$ ./cmd.sh down
+```
+
+to clear all docker containers manually, run the following command:
+```
+$ ./cmd.sh clear
+```
 
 ### etcd
 creating 3 etcd instances:
@@ -29,7 +49,7 @@ yumd-redis6: 10.20.20.15
 
 
 ### mysql
-create 2 mysql instances by Galera cluster.
+create 2 mysql instances (```username:root``` and ```password:root```) by Galera cluster.
 
 The management node:
 
