@@ -1,3 +1,7 @@
+TODO:
+* proxysql
+* lizardfs
+
 # yumd-dev
 docker compose to create minimal development clustered infrastructure with monitoring tools and panels
 
