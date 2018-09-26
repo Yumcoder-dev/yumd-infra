@@ -272,9 +272,13 @@ services:
     - "3000:3000"
     volumes:
     - grafana1-storage:/var/lib/grafana
+    - ./provisioning:/etc/grafana/provisioning
     networks:
       dev_net:
         ipv4_address: 10.20.40.10
+    depends_on:
+      - yumd-influxdb1
+#    user: "0:472"
 
   yumd-influxdb1:
     image: influxdb
@@ -329,6 +333,12 @@ volumes:
   mysql1-storage:
   mysql2-storage:
   grafana1-storage:
+#  grafana1-provisioning-storage:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      o: bind
+#      device: "${PWD}/provisioning"
 ##############################################################
 # networks
 ##############################################################

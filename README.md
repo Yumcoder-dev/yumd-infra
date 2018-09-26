@@ -7,8 +7,8 @@ clustering components:
 - mysql (subnet 10.20.30.0/24)
 
 monitoring components:
-- grafana (10.20.40.10)
-- influxdb (10.20.40.11)
+- grafana (10.20.40.10:3000)
+- influxdb (10.20.40.11:8086)
 - telegraf (10.20.40.12)
 
 in order to setup infrastructure, in command line run the below command:
@@ -47,7 +47,6 @@ yumd-redis5: 10.20.20.14
 yumd-redis6: 10.20.20.15
 ```
 
-
 ### mysql
 create 2 mysql instances (```username:root``` and ```password:root```) by Galera cluster.
 
@@ -70,3 +69,17 @@ The MySQL server node:
 yumd-mysql-srv1:10.20.30.100
 yumd-mysql-srv2: 10.20.30.101
 ```
+
+### grafana
+go to ```localhost:3000``` or ```10.20.40.10:3000``` and login with
+```username:admin``` and ```password:admin```. this configuration automatically
+provisioning data-sources and dashboards(for system, docker containers, mysql, redis).
+
+### delete docker volumes
+to delete dangling docker volumes run the following command:
+
+```
+docker volume rm $(docker volume ls -qf dangling=true)
+```
+
+

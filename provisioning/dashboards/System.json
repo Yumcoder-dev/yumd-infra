@@ -1,40 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_YUMD-INFRA",
-      "label": "yumd-infra",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "5.2.4"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": "5.0.0"
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": "5.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -52,8 +16,8 @@
   "editable": true,
   "gnetId": 914,
   "graphTooltip": 1,
-  "id": null,
-  "iteration": 1537950962050,
+  "id": 4,
+  "iteration": 1537973556566,
   "links": [],
   "panels": [
     {
@@ -79,7 +43,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "format": "s",
@@ -198,7 +162,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -318,7 +282,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -438,7 +402,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -558,7 +522,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -678,7 +642,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "format": "percent",
@@ -809,7 +773,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "format": "percent",
@@ -928,7 +892,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -1048,7 +1012,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -1174,7 +1138,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "format": "percent",
@@ -1312,7 +1276,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1441,7 +1405,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 0,
@@ -1565,7 +1529,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1698,7 +1662,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1826,7 +1790,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1954,7 +1918,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2096,7 +2060,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2281,7 +2245,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2467,7 +2431,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -2649,7 +2613,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2830,7 +2794,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2975,7 +2939,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3105,7 +3069,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3230,7 +3194,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3374,7 +3338,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3557,7 +3521,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3740,7 +3704,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3923,7 +3887,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -4063,7 +4027,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_YUMD-INFRA}",
+      "datasource": "yumd-infra",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -4233,8 +4197,11 @@
       },
       {
         "allValue": null,
-        "current": {},
-        "datasource": "${DS_YUMD-INFRA}",
+        "current": {
+          "text": "d848e67d8919",
+          "value": "d848e67d8919"
+        },
+        "datasource": "yumd-infra",
         "hide": 0,
         "includeAll": false,
         "label": "Server",
@@ -4349,6 +4316,6 @@
   },
   "timezone": "browser",
   "title": "System",
-  "uid": "Lme5Hp0ik",
-  "version": 2
+  "uid": "reWM3pAmz",
+  "version": 1
 }
