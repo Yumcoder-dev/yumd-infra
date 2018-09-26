@@ -1,8 +1,11 @@
 # yumd-dev
-docker compose to create minimal development clustered infrastructure with monitoring tools
+docker compose to create minimal development clustered infrastructure with monitoring tools and panels
 
-![grafana](./pic/sys-board.png)
+![grafana](./pic/system.png)
 
+![grafana](./pic/redis.png)
+
+![mysql](./pic/mysql.png)
 
 clustering components:
 - etcd (subnet 10.20.10.0/24)
