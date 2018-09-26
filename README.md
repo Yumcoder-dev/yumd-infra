@@ -3,6 +3,8 @@ docker compose to create minimal development clustered infrastructure with monit
 
 ![grafana](./pic/system.png)
 
+![docker](./pic/docker.png)
+
 ![grafana](./pic/redis.png)
 
 ![mysql](./pic/mysql.png)
@@ -14,6 +16,7 @@ clustering components:
 
 monitoring components:
 - grafana (10.20.40.10:3000)
+-system (host),
 - influxdb (10.20.40.11:8086)
 - telegraf (10.20.40.12)
 
@@ -79,7 +82,7 @@ yumd-mysql-srv2: 10.20.30.101
 ### grafana
 go to ```localhost:3000``` or ```10.20.40.10:3000``` and login with
 ```username:admin``` and ```password:admin```. this configuration automatically
-provisioning data-sources and dashboards(for system, docker containers, mysql, redis).
+provisioning data sources and dashboards (for system, docker containers, mysql, redis panel).
 
 ### delete docker volumes
 to delete dangling docker volumes run the following command:

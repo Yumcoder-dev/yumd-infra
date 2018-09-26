@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.4"
 services:
 
   ##############################################################
@@ -243,15 +243,16 @@ services:
       dev_net:
         ipv4_address: 10.20.20.15
 
-  # todo(yumcoder): remove dependency to internet in every up event
   yumd-redis-cluster-creator:
-    image: alpine
+    build:
+      context: ./redis-cluster-creator
+      network: host
     container_name: yumd-redis-cluster-creator
-    volumes:
-      - ./redis-trib.rb:/home/redis-trib.rb
+#    volumes:
+#      - ./redis-trib.rb:/home/redis-trib.rb
     network_mode: "host"
     command: |
-      sh -c " apk add ruby && gem install rdoc --no-rdoc --no-ri && gem install redis && (yes 'yes' | ruby /home/redis-trib.rb create --replicas 1 10.20.20.10:7000 10.20.20.11:7000 10.20.20.12:7000 10.20.20.13:7000 10.20.20.14:7000 10.20.20.15:7000)"
+      sh -c "yes 'yes' | ruby redis-trib.rb create --replicas 1 10.20.20.10:7000 10.20.20.11:7000 10.20.20.12:7000 10.20.20.13:7000 10.20.20.14:7000 10.20.20.15:7000"
     depends_on:
       - yumd-redis1
       - yumd-redis2
