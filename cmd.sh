@@ -16,3 +16,9 @@ if [ $1 = "down" ]
 then
     docker-compose down
 fi
+#####################################################
+if [ $1 = "remove" ]
+then
+    docker volume rm $(docker volume ls -qf dangling=true)
+fi
+
